@@ -105,6 +105,104 @@ def test_login_rejects_password_with_different_symbols():
 
     assert users.login("bob_symbols", "password") is False
 
+@pytest.mark.regression
+def test_catalog_search_ignores_letter_case():
+    """Author: Min Khant Kyaw.
+    Candidate regression: search should find a title regardless of case.
+    Confirm this is an intended requirement before keeping the test.
+    """
+    catalog = Catalog()
+    catalog.add_product(1, "Python Testing", 30)
+
+    assert catalog.search("python") == [1]
+
+@pytest.mark.regression
+def test_catalog_search_with_empty_keyword():
+    """Author: Min Khant Kyaw.
+    Candidate regression: an empty search should return no results.
+    Confirm this is an intended requirement before keeping the test.
+    """
+    catalog = Catalog()
+    catalog.add_product(1, "Python Testing", 30)
+    catalog.add_product(2, "Linux Basics", 25)
+
+    assert catalog.search("") == []
+
+@pytest.mark.regression
+def test_cart_total_includes_last_item():
+    """Author: Zay Htet.
+    Regression: total must include every item in the cart.
+    """
+    catalog = Catalog()
+    catalog.add_product(1, "Book A", 10)
+    catalog.add_product(2, "Book B", 20)
+
+    cart = Cart(catalog)
+    cart.add(1)
+    cart.add(2)
+
+    assert cart.total() == 30
 
 
 # ---- YOUR SLOW TESTS (at least 2) ---- 
+@pytest.mark.slow
+def test_register_and_login_many_users():
+    """Author: So Pyay Htoo
+    Slow test: register and log in many different users.
+    """
+    users = Users()
+    number_of_users = 10000
+
+    for i in range(number_of_users):
+        username = f"user_{i}"
+        password = f"password_{i}"
+        assert users.register(username, password) is True
+
+    for i in range(number_of_users):
+        username = f"user_{i}"
+        password = f"password_{i}"
+        assert users.login(username, password) is True
+
+    assert len(users.users) == number_of_users
+
+
+@pytest.mark.slow
+def test_add_and_search_large_catalog():
+    """Author: Min Khant Kyaw.
+    Slow test: search a catalog containing 20000 products.
+    """
+    catalog = Catalog()
+    number_of_products = 20000
+
+    for i in range(number_of_products):
+        catalog.add_product(i, f"Python Book {i}", i + 1)
+
+    results = catalog.search("Python Book")
+
+    assert len(catalog.products) == number_of_products
+    assert len(results) == number_of_products
+    assert 0 in results
+    assert number_of_products - 1 in results
+
+@pytest.mark.slow
+def test_bulk_import_many_products():
+    """Author: Zay Htet.
+    Slow test: bulk-import 20000 products and verify the count.
+    """
+    catalog = Catalog()
+    cart = Cart(catalog)
+    number_of_products = 20000
+
+    products = [
+        (i, f"Imported Book {i}", (i % 100) + 1)
+        for i in range(number_of_products)
+    ]
+
+    imported = cart.import_products(products)
+
+    assert imported == number_of_products
+    assert len(catalog.products) == number_of_products
+    assert catalog.products[0]["title"] == "Imported Book 0"
+    assert catalog.products[number_of_products - 1]["title"] == (
+        f"Imported Book {number_of_products - 1}"
+    )
