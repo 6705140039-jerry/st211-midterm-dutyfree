@@ -85,7 +85,7 @@ def test_checkout_nonempty_cart():
 
 @pytest.mark.regression
 def test_login_preserves_symbols_in_password():
-    """Author: Aung Myo Naing 
+    """Author: Aung Myo Naing.
     Regression: login should compare the original password,
     not remove punctuation before checking it.
     """
@@ -97,7 +97,7 @@ def test_login_preserves_symbols_in_password():
 
 @pytest.mark.regression
 def test_login_rejects_password_with_different_symbols():
-    """Author: Aung Myo Naing 
+    """Author: Aung Myo Naing.
     Regression: a password with different symbols must not be accepted.
     """
     users = Users()
@@ -143,6 +143,18 @@ def test_cart_total_includes_last_item():
 
     assert cart.total() == 30
 
+
+@pytest.mark.regression
+def test_empty_checkout_returns_none_without_saving_order():
+    """Author: Zay Htet.
+    Regression: checking out an empty cart should not create an order.
+    """
+    cart = Cart(Catalog())
+
+    result = cart.checkout()
+
+    assert result is None
+    assert cart.history() == []
 
 # ---- YOUR SLOW TESTS (at least 2) ---- 
 @pytest.mark.slow
