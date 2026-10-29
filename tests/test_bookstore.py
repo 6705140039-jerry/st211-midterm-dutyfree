@@ -83,4 +83,30 @@ def test_checkout_nonempty_cart():
 
 # ---- YOUR REGRESSION TESTS (the bug hunt) ---- 
 
+@pytest.mark.regression
+def test_login_preserves_symbols_in_password():
+    """Author: Aung Myo Naing - Replace with name.
+    Regression: login should compare the original password,
+    not remove punctuation before checking it.
+    """
+    users = Users()
+    users.register("alice_symbols", "p@ss-word!42")
+
+    assert users.login("alice_symbols", "p@ss-word!42") is True
+
+
+@pytest.mark.regression
+def test_login_rejects_password_with_different_symbols():
+    """Author: Aung Myo Naing - Replace with name.
+    Regression: a password with different symbols must not be accepted.
+    """
+    users = Users()
+    users.register("bob_symbols", "p@ssword")
+
+    assert users.login("bob_symbols", "password") is False
+
+
+
+
+
 # ---- YOUR SLOW TESTS (at least 2) ---- 
