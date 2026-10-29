@@ -107,6 +107,4 @@ def test_login_rejects_password_with_different_symbols():
 
 
 
-
-
 # ---- YOUR SLOW TESTS (at least 2) ---- 
