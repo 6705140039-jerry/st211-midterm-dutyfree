@@ -9,9 +9,15 @@ class Catalog:
         self.products[product_id] = {"title": title, "price": price}
 
     def search(self, keyword):
-        """Return a list of product_ids whose title contains the keyword."""
+        """Return product IDs whose titles contain the keyword."""
+        if not keyword:
+            return []
+
         results = []
+        keyword = keyword.casefold()
+
         for pid, info in self.products.items():
-            if keyword in info["title"]:
+            if keyword in info["title"].casefold():
                 results.append(pid)
+
         return results
