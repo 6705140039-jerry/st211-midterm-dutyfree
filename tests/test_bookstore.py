@@ -85,7 +85,7 @@ def test_checkout_nonempty_cart():
 
 @pytest.mark.regression
 def test_login_preserves_symbols_in_password():
-    """Author: Aung Myo Naing - Replace with name.
+    """Author: Aung Myo Naing.
     Regression: login should compare the original password,
     not remove punctuation before checking it.
     """
@@ -97,7 +97,7 @@ def test_login_preserves_symbols_in_password():
 
 @pytest.mark.regression
 def test_login_rejects_password_with_different_symbols():
-    """Author: Aung Myo Naing - Replace with name.
+    """Author: Aung Myo Naing.
     Regression: a password with different symbols must not be accepted.
     """
     users = Users()
@@ -105,8 +105,28 @@ def test_login_rejects_password_with_different_symbols():
 
     assert users.login("bob_symbols", "password") is False
 
+@pytest.mark.regression
+def test_catalog_search_ignores_letter_case():
+    """Author: Min Khant Kyaw.
+    Candidate regression: search should find a title regardless of case.
+    Confirm this is an intended requirement before keeping the test.
+    """
+    catalog = Catalog()
+    catalog.add_product(1, "Python Testing", 30)
 
+    assert catalog.search("python") == [1]
 
+@pytest.mark.regression
+def test_catalog_search_with_empty_keyword():
+    """Author: Min Khant Kyaw.
+    Candidate regression: an empty search should return no results.
+    Confirm this is an intended requirement before keeping the test.
+    """
+    catalog = Catalog()
+    catalog.add_product(1, "Python Testing", 30)
+    catalog.add_product(2, "Linux Basics", 25)
+
+    assert catalog.search("") == []
 
 
 # ---- YOUR SLOW TESTS (at least 2) ---- 
