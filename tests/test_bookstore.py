@@ -128,5 +128,32 @@ def test_catalog_search_with_empty_keyword():
 
     assert catalog.search("") == []
 
+@pytest.mark.regression
+def test_cart_total_includes_last_item():
+    """Author: Zay Htet.
+    Regression: total must include every item in the cart.
+    """
+    catalog = Catalog()
+    catalog.add_product(1, "Book A", 10)
+    catalog.add_product(2, "Book B", 20)
+
+    cart = Cart(catalog)
+    cart.add(1)
+    cart.add(2)
+
+    assert cart.total() == 30
+
+
+@pytest.mark.regression
+def test_empty_checkout_returns_none_without_saving_order():
+    """Author: Zay Htet.
+    Regression: checking out an empty cart should not create an order.
+    """
+    cart = Cart(Catalog())
+
+    result = cart.checkout()
+
+    assert result is None
+    assert cart.history() == []
 
 # ---- YOUR SLOW TESTS (at least 2) ---- 
