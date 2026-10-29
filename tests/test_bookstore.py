@@ -176,3 +176,22 @@ def test_register_and_login_many_users():
         assert users.login(username, password) is True
 
     assert len(users.users) == number_of_users
+
+
+@pytest.mark.slow
+def test_add_and_search_large_catalog():
+    """Author: Min Khant Kyaw.
+    Slow test: search a catalog containing 20000 products.
+    """
+    catalog = Catalog()
+    number_of_products = 20000
+
+    for i in range(number_of_products):
+        catalog.add_product(i, f"Python Book {i}", i + 1)
+
+    results = catalog.search("Python Book")
+
+    assert len(catalog.products) == number_of_products
+    assert len(results) == number_of_products
+    assert 0 in results
+    assert number_of_products - 1 in results
