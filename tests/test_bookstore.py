@@ -195,3 +195,26 @@ def test_add_and_search_large_catalog():
     assert len(results) == number_of_products
     assert 0 in results
     assert number_of_products - 1 in results
+
+@pytest.mark.slow
+def test_bulk_import_many_products():
+    """Author: Zay Htet.
+    Slow test: bulk-import 20000 products and verify the count.
+    """
+    catalog = Catalog()
+    cart = Cart(catalog)
+    number_of_products = 20000
+
+    products = [
+        (i, f"Imported Book {i}", (i % 100) + 1)
+        for i in range(number_of_products)
+    ]
+
+    imported = cart.import_products(products)
+
+    assert imported == number_of_products
+    assert len(catalog.products) == number_of_products
+    assert catalog.products[0]["title"] == "Imported Book 0"
+    assert catalog.products[number_of_products - 1]["title"] == (
+        f"Imported Book {number_of_products - 1}"
+    )
