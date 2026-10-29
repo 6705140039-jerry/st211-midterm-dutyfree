@@ -22,19 +22,23 @@ class Cart:
         return False
 
     def total(self):
-        """Total price of everything currently in the cart."""
+        """Return the total price of every item in the cart."""
         total = 0
-        for i in range(len(self.items) - 1):
-            pid = self.items[i]
+
+        for pid in self.items:
             total += self.catalog.products[pid]["price"]
+
         return total
 
     def checkout(self):
-        """Place an order for the cart contents. Returns the order list, or
-        None if the cart is empty."""
+        """Place an order for a non-empty cart; return None if empty."""
+        if not self.items:
+            return None
+
         order = list(self.items)
         self.orders.append(order)
         self.items = []
+
         return order
 
     def history(self):
