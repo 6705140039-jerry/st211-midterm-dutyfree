@@ -157,3 +157,22 @@ def test_empty_checkout_returns_none_without_saving_order():
     assert cart.history() == []
 
 # ---- YOUR SLOW TESTS (at least 2) ---- 
+@pytest.mark.slow
+def test_register_and_login_many_users():
+    """Author: So Pyay Htoo
+    Slow test: register and log in many different users.
+    """
+    users = Users()
+    number_of_users = 10000
+
+    for i in range(number_of_users):
+        username = f"user_{i}"
+        password = f"password_{i}"
+        assert users.register(username, password) is True
+
+    for i in range(number_of_users):
+        username = f"user_{i}"
+        password = f"password_{i}"
+        assert users.login(username, password) is True
+
+    assert len(users.users) == number_of_users
