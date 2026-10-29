@@ -19,5 +19,5 @@ class Notes:
         """Return the total number of words across all notes."""
         total = 0
         for note in self.notes:
-            total += len(note)
+            total += len(note.split())
         return total
