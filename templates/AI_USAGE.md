@@ -57,7 +57,6 @@ E       assert 10 == 30
 ai_review/test_ai_generated.py::test_cart_total_sums_items PASSED             [100%]
 
 ================================= 1 passed in 0.01s =================================
-(.venv) Phoos-MacBook-Air-3:st211-midterm-dutyfree ange23$ 
 ```
 
 **4. What that pair proves.**\
@@ -86,13 +85,17 @@ defect.
 **2. Evidence --- against the shipped code**
 
 ``` text
-ai_review/test_ai_generated.py::test_login_rejects_wrong_password PASSED
+ai_review/test_ai_generated.py::test_login_rejects_wrong_password PASSED      [100%]
+
+================================= 1 passed in 0.01s =================================
 ```
 
 **3. Evidence --- against your fixed code**
 
 ``` text
-ai_review/test_ai_generated.py::test_login_rejects_wrong_password PASSED
+ai_review/test_ai_generated.py::test_login_rejects_wrong_password PASSED      [100%]
+
+================================= 1 passed in 0.01s =================================
 ```
 
 **4. What that pair proves.**\
@@ -122,13 +125,17 @@ case-insensitive.
 **2. Evidence --- against the shipped code**
 
 ``` text
-ai_review/test_ai_generated.py::test_search_finds_exact_title PASSED
+ai_review/test_ai_generated.py::test_search_finds_exact_title PASSED          [100%]
+
+================================= 1 passed in 0.01s =================================
 ```
 
 **3. Evidence --- against your fixed code**
 
 ``` text
-ai_review/test_ai_generated.py::test_search_finds_exact_title PASSED
+ai_review/test_ai_generated.py::test_search_finds_exact_title PASSED          [100%]
+
+================================= 1 passed in 0.01s =================================
 ```
 
 **4. What that pair proves.**\
@@ -165,7 +172,9 @@ E       AssertionError: assert 3 == 2
 **3. Evidence --- against your fixed code**
 
 ``` text
-ai_review/test_ai_generated.py::test_import_returns_count PASSED
+ai_review/test_ai_generated.py::test_import_returns_count PASSED              [100%]
+
+================================= 1 passed in 0.01s ===========
 ```
 
 **4. What that pair proves.**\
@@ -194,13 +203,17 @@ check.
 **2. Evidence --- against the shipped code**
 
 ``` text
-ai_review/test_ai_generated.py::test_register_duplicate_returns_false PASSED
+ai_review/test_ai_generated.py::test_register_duplicate_returns_false PASSED  [100%]
+
+================================= 1 passed in 0.01s =================================
 ```
 
 **3. Evidence --- against your fixed code**
 
 ``` text
-ai_review/test_ai_generated.py::test_register_duplicate_returns_false PASSED
+ai_review/test_ai_generated.py::test_register_duplicate_returns_false PASSED  [100%]
+
+================================= 1 passed in 0.01s =================================
 ```
 
 **4. What that pair proves.**\
@@ -236,7 +249,9 @@ E       assert [] is None
 **3. Evidence --- against your fixed code**
 
 ``` text
-ai_review/test_ai_generated.py::test_checkout_empty_returns_none PASSED
+ai_review/test_ai_generated.py::test_checkout_empty_returns_none PASSED       [100%]
+
+================================= 1 passed in 0.01s =================================
 ```
 
 **4. What that pair proves.**\
@@ -263,13 +278,17 @@ successful result. It checks the normal add-to-cart operation.
 **2. Evidence --- against the shipped code**
 
 ``` text
-ai_review/test_ai_generated.py::test_add_to_cart_returns_true_for_known_product PASSED
+ai_review/test_ai_generated.py::test_add_to_cart_returns_true_for_known_product PASSED [100%]
+
+================================= 1 passed in 0.02s =================================
 ```
 
 **3. Evidence --- against your fixed code**
 
 ``` text
-ai_review/test_ai_generated.py::test_add_to_cart_returns_true_for_known_product PASSED
+ai_review/test_ai_generated.py::test_add_to_cart_returns_true_for_known_product PASSED [100%]
+
+================================= 1 passed in 0.02s =================================
 ```
 
 **4. What that pair proves.**\
@@ -300,18 +319,20 @@ result count is at most 10.
 Command used for the full shipped-code run: `python -m pytest -v`
 
 ``` text
-ai_review/test_ai_generated.py::test_search_is_limited_to_ten_results FAILED
-E       AssertionError: assert 20 <= 10
-E       + where 20 = len([0, 1, 2, 3, 4, 5, ...])
+ai_review/test_ai_generated.py:60: AssertionError
+============================== short test summary info ==============================
+FAILED ai_review/test_ai_generated.py::test_search_is_limited_to_ten_results - AssertionError: assert 20 <= 10
+================================= 1 failed in 0.04s =================================
 ```
 
 **3. Evidence --- against your fixed code**\
 Command used for the final full run: `python -m pytest -v`
 
 ``` text
-ai_review/test_ai_generated.py::test_search_is_limited_to_ten_results FAILED
-E       AssertionError: assert 20 <= 10
-E       + where 20 = len([0, 1, 2, 3, 4, 5, ...])
+ai_review/test_ai_generated.py:60: AssertionError
+============================== short test summary info ==============================
+FAILED ai_review/test_ai_generated.py::test_search_is_limited_to_ten_results - AssertionError: assert 20 <= 10
+================================= 1 failed in 0.04s =================================
 ```
 
 **4. What that pair proves.**\
