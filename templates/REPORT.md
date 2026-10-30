@@ -1,6 +1,12 @@
 # REPORT.md
+**Group:** Duty Free
 
-Group: <name>   Members: <names>
+**Members:**
+- Aung Myo Naing — 6705140039
+- So Pyay Htoo — 6705140034
+- Zarr Ni Htut — 6705140005
+- Min Khant Kyaw — 6705140008
+- Zay Htet — 6705140013
 
 ## Part A -- Test typess
 For smoke, regression, and slow: define it, say when it runs, give two
