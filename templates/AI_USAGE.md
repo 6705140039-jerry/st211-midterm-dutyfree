@@ -21,29 +21,7 @@ If any AI tools were used but are not listed here, add them before submission.
 
 ## Part 2 --- Audit of the Supplied Test Set
 
-The repository test run confirms that all eight supplied tests are
-present in `ai_review/test_ai_generated.py`. The initial full run was
-against the shipped code; the final full run was after the group's
-fixes.
 
-### 2.1 Classification Rules
-
-  -----------------------------------------------------------------------
-  Shipped code            Fixed code              Verdict
-  ----------------------- ----------------------- -----------------------
-  FAIL                    PASS                    Genuine detection
-
-  PASS                    PASS                    Detects nothing
-
-  PASS                    FAIL                    Locks in the bug
-
-  FAIL                    FAIL                    Invented requirement,
-                                                  if the expected
-                                                  behaviour is not a
-                                                  documented requirement
-  -----------------------------------------------------------------------
-
-### 2.2 Summary Table
 
 | # | Test | What it claims to catch | Shipped code | Fixed code | Verdict | Auditor |
 |---:|---|---|---|---|---|---|
@@ -51,19 +29,10 @@ fixes.
 | 2 | `test_login_rejects_wrong_password` | Checks whether login rejects an incorrect password. | PASS | PASS | Detects nothing | Zarr Ni Htut |
 | 3 | `test_search_finds_exact_title` | Checks whether exact-title search returns the matching product. | PASS | PASS | Detects nothing | Aung Myo Naing |
 | 4 | `test_import_returns_count` | Checks whether bulk import returns the number of imported products. | FAIL | PASS | Genuine detection | Aung Myo Naing |
-| 5 | `test_checkout_empty_returns_none` | Checks whether empty-cart checkout returns `None`. | FAIL | PASS | Genuine detection | Zay Htet |
-| 6 | `test_add_to_cart_returns_true_for_known_product` | Checks whether adding a known product returns a successful result. | PASS | PASS | Detects nothing | So Pyay Htoo |
-| 7 | `test_search_is_limited_to_ten_results` | Claims catalogue search should return no more than ten results. | FAIL | FAIL | Invented requirement (provisional; verify specification) | So Pyay Htoo |
-
-*The auditor names follow the earlier group audit assignment draft. Each named member must confirm that they personally performed the audit; authorship of related group tests does not independently establish who audited these AI-supplied tests.*
-
-### 2.3 Individual Test Analysis and Evidence
-
-The actual repository test file shown in the terminal output is
-`ai_review/test_ai_generated.py` (not the template's example path
-`ai_review/test_ai_suggested.py`). The evidence below uses the actual
-pytest output supplied by the group. Each test entry follows the five
-required detail points.
+| 5 | `test_register_duplicate_returns_false` | Checks whether registering a duplicate username returns `False`. | PASS | PASS | Detects nothing | Min Khant Kyaw |
+| 6 | `test_checkout_empty_returns_none` | Checks whether empty-cart checkout returns `None`. | FAIL | PASS | Genuine detection | Zay Htet |
+| 7 | `test_add_to_cart_returns_true_for_known_product` | Checks whether adding a known product returns a successful result. | PASS | PASS | Detects nothing | So Pyay Htoo |
+| 8 | `test_search_is_limited_to_ten_results` | Claims catalogue search should return no more than ten results. | FAIL | FAIL | Invented requirement (provisional; verify specification) | So Pyay Htoo |
 
 #### Test: `test_cart_total_sums_items` (`ai_review/test_ai_generated.py`)
 
@@ -209,7 +178,41 @@ supplied.
 -   [ ] Locks in the bug --- PASS then FAIL
 -   [ ] Invented requirement --- FAIL then FAIL
 
+#### Test: `test_register_duplicate_returns_false` (`ai_review/test_ai_generated.py`)
 
+**Audited by:** Min Khant Kyaw --- confirm that you personally performed
+this audit.
+
+**1. What it claims to catch.**\
+The test checks whether trying to register a username that already
+exists returns `False`. This is a duplicate-registration behaviour
+check.
+
+**2. Evidence --- against the shipped code**
+
+``` text
+ai_review/test_ai_generated.py::test_register_duplicate_returns_false PASSED
+```
+
+**3. Evidence --- against your fixed code**
+
+``` text
+ai_review/test_ai_generated.py::test_register_duplicate_returns_false PASSED
+```
+
+**4. What that pair proves.**\
+This is **Detects nothing --- PASS then PASS**. The
+duplicate-registration assertion passes in both versions, so this test
+does not identify a defect changed by the group's fixes. It is not a
+test for the special-character login, search, cart-total,
+empty-checkout, or bulk-import defects recorded by the group.
+
+**5. Verdict (tick one)**
+
+-   [ ] Genuine detection --- FAIL then PASS
+-   [x] Detects nothing --- PASS then PASS
+-   [ ] Locks in the bug --- PASS then FAIL
+-   [ ] Invented requirement --- FAIL then FAIL
 
 #### Test: `test_checkout_empty_returns_none` (`ai_review/test_ai_generated.py`)
 
@@ -542,7 +545,7 @@ in Part 2.
 | Empty checkout returns `[]` instead of `None`. | Yes | Yes | `test_checkout_empty_returns_none` fails on shipped code and passes on fixed code. The group's `test_empty_checkout_returns_none_without_saving_order` checks the same empty-cart behaviour. |
 | Login fails after registering 10,000 users. | Yes | No | None of the eight supplied tests checks registration and login with 10,000 users. The group's `test_register_and_login_many_users` tests this scenario. |
 | Bulk import of 20,000 products returns an incorrect count. | Yes | Yes | `test_import_returns_count` fails on shipped code (3 instead of 2) and passes on fixed code. The group's `test_bulk_import_many_products` checks the same import-count behaviour at 20,000 products. |
-| Search returns 20 results when the supplied test expects no more than 10. | No  | No | `test_search_is_limited_to_ten_results` fails on both shipped and fixed code. The pair does not establish a fixed defect. Verify the application specification before deciding whether a ten-result cap is required; the test's failure alone is not proof of a bug. |
+| Search returns 20 results when the supplied test expects no more than 10. | No — not listed as a group finding | No — not a genuine detection | `test_search_is_limited_to_ten_results` fails on both shipped and fixed code. The pair does not establish a fixed defect. Verify the application specification before deciding whether a ten-result cap is required; the test's failure alone is not proof of a bug. |
 
 **Part 3 finding:** The supplied set genuinely catches three bugs
 already found by the group: cart total, empty checkout, and bulk-import
