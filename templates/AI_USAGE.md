@@ -51,10 +51,9 @@ fixes.
 | 2 | `test_login_rejects_wrong_password` | Checks whether login rejects an incorrect password. | PASS | PASS | Detects nothing | Zarr Ni Htut |
 | 3 | `test_search_finds_exact_title` | Checks whether exact-title search returns the matching product. | PASS | PASS | Detects nothing | Aung Myo Naing |
 | 4 | `test_import_returns_count` | Checks whether bulk import returns the number of imported products. | FAIL | PASS | Genuine detection | Aung Myo Naing |
-| 5 | `test_register_duplicate_returns_false` | Checks whether registering a duplicate username returns `False`. | PASS | PASS | Detects nothing | Min Khant Kyaw |
-| 6 | `test_checkout_empty_returns_none` | Checks whether empty-cart checkout returns `None`. | FAIL | PASS | Genuine detection | Zay Htet |
-| 7 | `test_add_to_cart_returns_true_for_known_product` | Checks whether adding a known product returns a successful result. | PASS | PASS | Detects nothing | So Pyay Htoo |
-| 8 | `test_search_is_limited_to_ten_results` | Claims catalogue search should return no more than ten results. | FAIL | FAIL | Invented requirement (provisional; verify specification) | So Pyay Htoo |
+| 5 | `test_checkout_empty_returns_none` | Checks whether empty-cart checkout returns `None`. | FAIL | PASS | Genuine detection | Zay Htet |
+| 6 | `test_add_to_cart_returns_true_for_known_product` | Checks whether adding a known product returns a successful result. | PASS | PASS | Detects nothing | So Pyay Htoo |
+| 7 | `test_search_is_limited_to_ten_results` | Claims catalogue search should return no more than ten results. | FAIL | FAIL | Invented requirement (provisional; verify specification) | So Pyay Htoo |
 
 *The auditor names follow the earlier group audit assignment draft. Each named member must confirm that they personally performed the audit; authorship of related group tests does not independently establish who audited these AI-supplied tests.*
 
@@ -210,41 +209,7 @@ supplied.
 -   [ ] Locks in the bug --- PASS then FAIL
 -   [ ] Invented requirement --- FAIL then FAIL
 
-#### Test: `test_register_duplicate_returns_false` (`ai_review/test_ai_generated.py`)
 
-**Audited by:** Min Khant Kyaw --- confirm that you personally performed
-this audit.
-
-**1. What it claims to catch.**\
-The test checks whether trying to register a username that already
-exists returns `False`. This is a duplicate-registration behaviour
-check.
-
-**2. Evidence --- against the shipped code**
-
-``` text
-ai_review/test_ai_generated.py::test_register_duplicate_returns_false PASSED
-```
-
-**3. Evidence --- against your fixed code**
-
-``` text
-ai_review/test_ai_generated.py::test_register_duplicate_returns_false PASSED
-```
-
-**4. What that pair proves.**\
-This is **Detects nothing --- PASS then PASS**. The
-duplicate-registration assertion passes in both versions, so this test
-does not identify a defect changed by the group's fixes. It is not a
-test for the special-character login, search, cart-total,
-empty-checkout, or bulk-import defects recorded by the group.
-
-**5. Verdict (tick one)**
-
--   [ ] Genuine detection --- FAIL then PASS
--   [x] Detects nothing --- PASS then PASS
--   [ ] Locks in the bug --- PASS then FAIL
--   [ ] Invented requirement --- FAIL then FAIL
 
 #### Test: `test_checkout_empty_returns_none` (`ai_review/test_ai_generated.py`)
 
