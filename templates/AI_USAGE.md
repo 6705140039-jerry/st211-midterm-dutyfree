@@ -15,7 +15,6 @@
 
 **Verification:** We reviewed AI-generated suggestions against the actual application behaviour and checked relevant results by running pytest. AI-generated suggestions were not treated as evidence without checking the test results.
 
-**Declaration check:** All group members should confirm that ChatGPT and Gemini are the complete list of AI tools used by anyone in the group. Add any missing tools and remove any tool that was not actually used.
 
 ------------------------------------------------------------------------
 
