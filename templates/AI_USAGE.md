@@ -1,6 +1,6 @@
 # AI_USAGE.md -- Declaration and audit
 
-Group: Members: Zay Htet (Zett), Aung Myo Naing (Jerry), So Pyay Htoo (Yummy), Min Khant Kyaw (Sonic), ZarrNi Htut (Raymand), Kaung Htet Hein (Erik)
+Group: Members: Zay Htet (Zett), Aung Myo Naing (Jerry), So Pyay Htoo (Yummy), Min Khant Kyaw (Sonic), ZarrNi Htut (Raymand).
 
 ## D3.1 Declaration (required)
 
