@@ -54,7 +54,10 @@ E       assert 10 == 30
 **3. Evidence --- against your fixed code**
 
 ``` text
-ai_review/test_ai_generated.py::test_cart_total_sums_items PASSED
+ai_review/test_ai_generated.py::test_cart_total_sums_items PASSED             [100%]
+
+================================= 1 passed in 0.01s =================================
+(.venv) Phoos-MacBook-Air-3:st211-midterm-dutyfree ange23$ 
 ```
 
 **4. What that pair proves.**\
