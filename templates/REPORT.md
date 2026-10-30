@@ -77,9 +77,42 @@ These tests verify important cart and checkout rules: the total must include the
 The team's slow tests exercise larger workloads: registering and logging in 10,000 users, adding and searching 20,000 catalog products, and bulk-importing 20,000 products. These tests take more time and help reveal problems with large-scale operations that may not appear in small functional tests.
 
 ## Part F -- Team reflection
-1. Why is running only regression tests before every commit inefficient?
-2. Why do smoke tests usually run first in a CI/CD pipeline?
-3. What risks arise if slow tests are never run?
-4. Can one test belong to two categories? Give an example.
-5. Bug-finders and bug-fixers are often different people in a real QA team.
-   What does that separation change about how a bug report must be written?
+### 1. Why is running only regression tests before every commit inefficient?
+
+Running the entire regression suite before every commit can take more time and consume more computing resources than necessary, especially when the suite contains many tests. A smaller smoke-test suite can provide quick feedback about whether the main functions still work, while regression tests can be run at suitable stages such as after broader changes or before a release.
+
+### 2. Why do smoke tests usually run first in a CI/CD pipeline?
+
+Smoke tests run first because they are quick and check whether the most important application functions are working. If a smoke test fails, the team can stop the pipeline early and investigate the major problem instead of spending time running more extensive tests on an unstable build.
+
+### 3. What risks arise if slow tests are never run?
+
+If slow tests are never run, the team may miss performance, scalability, or large-data problems. For example, the bookstore may work with a few users and products but fail or become very slow when handling thousands of users or tens of thousands of products.
+
+### 4. Can one test belong to two categories? Give an example.
+
+Yes. A test can belong to more than one category depending on its purpose and how it is used. For example, a checkout test may be a smoke test when it checks that the basic checkout function works, and it may also be part of regression testing when it verifies that a previous checkout bug has not returned.
+
+### 5. Bug-finders and bug-fixers are often different people in a real QA team. What does that separation change about how a bug report must be written?
+
+A bug report must be clear and detailed enough for another person to reproduce and understand the problem. It should include the steps to reproduce the issue, the expected result, the actual result, relevant test data, and any error messages or screenshots. This reduces misunderstandings and helps the developer identify and fix the cause of the bug.
+
+## Test Suite Summary
+
+Based on the test functions and markers in the team's supplied test code:
+
+| Test category | Number of tests |
+|---|---:|
+| Smoke | 7 |
+| Regression | 6 |
+| Slow | 3 |
+| **Total** | **16** |
+
+### Slow tests in the team's test suite
+
+1. `test_register_and_login_many_users` — registers and logs in 10,000 users.
+2. `test_add_and_search_large_catalog` — adds and searches 20,000 products.
+3. `test_bulk_import_many_products` — bulk-imports 20,000 products and verifies the catalog records.
+
+**Note:** The starter example registration test is included in the smoke-test count. Its docstring currently identifies the author as `<example>`; replace that placeholder with the actual contributor's name if the assignment requires every test to identify its author.
+
