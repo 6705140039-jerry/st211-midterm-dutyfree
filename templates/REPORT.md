@@ -40,8 +40,41 @@
 - Add and search a large catalog containing 20,000 products.
 
 ## Part B -- Scenario classification
-For each of the six scenarios: smoke / regression / slow (may be more than one)
-with a 2-3 sentence justification.
+### Scenario 1: Registering and logging in a new user
+
+**Classification: Smoke**
+
+This is a core bookstore function. A successful registration and login check gives a quick indication that the user-account functionality is working.
+
+### Scenario 2: Logging in with passwords containing special characters
+
+**Classification: Regression**
+
+This test checks that password symbols are handled correctly and that a password with different symbols is rejected. It helps prevent changes to authentication code from breaking existing login behavior.
+
+### Scenario 3: Searching the catalog with different letter cases or an empty keyword
+
+**Classification: Regression**
+
+These tests check specific search behaviors, including case-insensitive matching and handling an empty search keyword. They help ensure that changes to catalog-search logic do not break expected search behavior.
+
+### Scenario 4: Adding products to the catalog and searching for a product
+
+**Classification: Smoke**
+
+Adding a product and finding it through search are important basic bookstore functions. These quick checks help confirm that the catalog can accept and retrieve products.
+
+### Scenario 5: Checking the cart total and checking out an empty cart
+
+**Classification: Regression**
+
+These tests verify important cart and checkout rules: the total must include the last item, and an empty checkout must return `None` without saving an order. They protect existing behavior when cart or checkout code changes.
+
+### Scenario 6: Performing operations with large numbers of users and products
+
+**Classification: Slow**
+
+The team's slow tests exercise larger workloads: registering and logging in 10,000 users, adding and searching 20,000 catalog products, and bulk-importing 20,000 products. These tests take more time and help reveal problems with large-scale operations that may not appear in small functional tests.
 
 ## Part F -- Team reflection
 1. Why is running only regression tests before every commit inefficient?
